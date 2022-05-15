@@ -1,0 +1,147 @@
+public class Solution {
+
+    
+    public static void main(String[] args) {
+        
+
+        
+        System.out.println (romanToInt("MCMXCIV"));
+        
+       
+    
+}
+     public static int romanToInt(String s) {
+         
+         String [] arr = new String[s.length()+1];
+        int sayi  = 0 ; 
+      
+        for(int i = 0 ; i<s.length() ; i++){
+           
+            arr[i] =  s.charAt(i) + ""  ; 
+                                  
+        }
+         for(int k = 0  ; k < s.length(); k++){
+             
+             if(k+1<s.length()){
+                 
+             
+            if(arr[k].equals("I")&& arr[k+1].equals("V")){
+                sayi = sayi - 2 ;
+                
+            }
+            else if(arr[k].equals("I")&& arr[k+1].equals("X")){
+                sayi = sayi - 2  ;
+                
+            }
+            else if(arr[k].equals("X")&& arr[k+1].equals("L")){
+                sayi = sayi - 20 ;
+            }
+            else if(arr[k].equals("X")&& arr[k+1].equals("C")){
+                sayi = sayi -20 ;
+            }
+            
+            else if(arr[k].equals("C")&& arr[k+1].equals("D")){
+                sayi = sayi - 200 ;
+            }
+            else if(arr[k].equals("C")&& arr[k+1].equals("M")){
+                sayi = sayi - 200 ;
+                
+            }
+            }
+         }
+                
+       
+           for(int j  = 0  ; j < s.length(); j++){
+               if(arr[j].contains("I")){
+                   sayi ++ ; 
+               }else if(arr[j].contains("V")){
+                   sayi = sayi + 5 ;  
+                          
+               }
+               else if(arr[j].contains("X")){
+                   sayi = sayi + 10 ;  
+                          
+               }
+               else if(arr[j].contains("L")){
+                   sayi = sayi + 50 ;  
+                          
+               }else if(arr[j].contains("C")){
+                   sayi = sayi + 100 ;  
+                          
+               }
+               else if(arr[j].contains("D")){
+                   sayi = sayi + 500 ;  
+                          
+               }
+               else if(arr[j].contains("M")){
+                   sayi = sayi + 1000 ;  
+                          
+               }
+           }
+                           
+        return sayi;      
+    }
+}
+
+// other answer : 
+/*
+
+import java.util.*;
+ 
+class RomanToInteger
+{
+    
+ public static int romanToInteger(String roman) 
+ {
+    Map<Character,Integer> numbersMap = new HashMap<>();
+    numbersMap.put('I',1);
+    numbersMap.put('V',5);
+    numbersMap.put('X',10);
+    numbersMap.put('L',50);
+    numbersMap.put('C',100);   
+    numbersMap.put('D',500);   
+    numbersMap.put('M',1000);  
+        
+    int result=0;
+        
+    for(int i=0;i<roman.length();i++)
+    {
+      char ch = roman.charAt(i);      // Current Roman Character
+      
+      //Case 1
+      if(i>0 && numbersMap.get(ch) > numbersMap.get(roman.charAt(i-1)))
+      {
+        result += numbersMap.get(ch) - 2*numbersMap.get(roman.charAt(i-1));
+      }
+      
+      // Case 2: just add the corresponding number to result.
+      else
+        result += numbersMap.get(ch);
+    }
+        
+    return result;
+ }
+ 
+  
+ public static void main(String args[])
+ {
+   // we take input as a String
+   String romanNumber="MCMXCIV";
+   int result = romanToInteger(romanNumber);
+   
+   System.out.println("The Roman Number is: "+romanNumber);
+   System.out.println("Its Integer Value is: "+result);
+   
+   System.out.println();
+   
+   romanNumber="DCCXCIX";
+   result = romanToInteger(romanNumber);
+   
+   System.out.println("The Roman Number is: "+romanNumber);
+   System.out.println("Its Integer Value is: "+result);
+ }
+  
+}
+
+
+*/
